@@ -12,12 +12,12 @@ import views.ViewAgenda;
 
 /**
  *
- * @author Salvador Hernandez Mendoza
+ * @author Zeo
  */
 public class ControllerAgenda {
 
-    public ModelAgenda modelAgenda;
-    public ViewAgenda viewAgenda;
+    ModelAgenda modelAgenda;
+    ViewAgenda viewAgenda;
 
     /**
      * Objeto de tipo ActionListener para atrapar los eventos actionPerformed y
@@ -49,6 +49,7 @@ public class ControllerAgenda {
     public ControllerAgenda(ModelAgenda modelAgenda, ViewAgenda viewAgenda) {
         this.modelAgenda = modelAgenda;
         this.viewAgenda = viewAgenda;
+        initComponents();
         setActionListener();
         initDB();
     }
@@ -57,25 +58,24 @@ public class ControllerAgenda {
      * Método que llama al método conectarBD del modelo y muestra el nombre y
      * email del primer registro en las cajas de texto de ViewAgenda.
      */
-    private void initDB() {
+    public void initDB(){
         modelAgenda.conectarDB();
         viewAgenda.jtf_nombre.setText(modelAgenda.getNombre());
         viewAgenda.jtf_email.setText(modelAgenda.getEmail());
     }
-
-//    /**
-//     * Metodo para inicializar la ViewAgenda
-//     */
-//    public void initComponents() {
-//        viewAgenda.setLocationRelativeTo(null);
-//        viewAgenda.setTitle("Agenda MVC");
-//        viewAgenda.setVisible(true);
-//    }
+    /**
+     * Metodo para inicializar la ViewAgenda
+     */
+    public void initComponents() {
+        viewAgenda.setLocationRelativeTo(null);
+        viewAgenda.setTitle("Agenda MVC");
+        viewAgenda.setVisible(true);
+    }
 
     /**
      * Método para agregar el actionListener a cada boton de la vista
      */
-    private void setActionListener() {
+    public void setActionListener() {
         viewAgenda.jbtn_primero.addActionListener(actionListener);
         viewAgenda.jbtn_anterior.addActionListener(actionListener);
         viewAgenda.jbtn_siguiente.addActionListener(actionListener);
@@ -85,44 +85,52 @@ public class ControllerAgenda {
     /**
      * Método para ver el primer registro de la tabla contactos
      */
+    
     private void jbtn_primero_actionPerformed() {
-        System.out.println("Action del boton jbtn_primero");
-         modelAgenda.moverPrimerRegistro();
-        setValues();
+       modelAgenda.moverPrimerRegistro();
+       viewAgenda.jtf_nombre.setText(modelAgenda.getNombre());
+       viewAgenda.jtf_email.setText(modelAgenda.getEmail());
+       
+        //invocar al metodo moverPrimerRegistro
+        //mostrar nombre en la vista
+        //mostar email en la vista
     }
 
     /**
-     * Método para ver el registro anterior de la tabla contactos.
+     * Método para ver el registro anterior de la tabla contactos
      */
     private void jbtn_anterior_actionPerformed() {
-        System.out.println("Action del boton jbtn_anterior");
-        modelAgenda.moverAnteriorRegistro();
-        setValues();
+       modelAgenda.moverAnteriorRegistro();
+       viewAgenda.jtf_nombre.setText(modelAgenda.getNombre());
+       viewAgenda.jtf_email.setText(modelAgenda.getEmail());
+       
+        //invocar al metodo moverAnteriorRegistro
+        //mostrar nombre en la vista
+        //mostar email en la vista
     }
 
     /**
-     * Método para ver el último registro de la tabla contactos.
+     * Método para ver el último registro de la tabla contactos
      */
     private void jbtn_ultimo_actionPerformed() {
-        System.out.println("Action del boton jbtn_ultimo");
-        modelAgenda.moverUltimoRegistro();
-        setValues();
+       modelAgenda.moverUltimoRegistro();
+       viewAgenda.jtf_nombre.setText(modelAgenda.getNombre());
+       viewAgenda.jtf_email.setText(modelAgenda.getEmail());
+       
+        //invocar al metodo moverUltimoRegistro
+        //mostrar nombre en la vista
+        //mostar email en la vista
     }
 
     /**
-     * Método para ver el siguiente registro de la tabla contactos.
+     * Método para ver el siguiente registro de la tabla contactos
      */
     private void jbtn_siguiente_actionPerformed() {
-        System.out.println("Action del boton jbtn_siguiente");
-        modelAgenda.moverSiguienteRegistro();
-        setValues();
-    }
-
-    /**
-     * Muestra el nombre y email almacenados en el modelAgenda en el viewAgenda.
-     */
-    private void setValues() {
-        viewAgenda.jtf_nombre.setText(modelAgenda.getNombre());
-        viewAgenda.jtf_email.setText(modelAgenda.getEmail());
+      modelAgenda.moverSiguienteRegistro();
+       viewAgenda.jtf_nombre.setText(modelAgenda.getNombre());
+       viewAgenda.jtf_email.setText(modelAgenda.getEmail());
+        //invocar al metodo moverSiguienteRegistro
+        //mostrar nombre en la vista
+        //mostar email en la vista
     }
 }
