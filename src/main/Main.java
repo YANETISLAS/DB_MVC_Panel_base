@@ -4,10 +4,21 @@
  * and open the template in the editor.
  */
 package main;
+import models.ModelMain;
+import views.ViewMain;
+import controllers.ControllerMain;
+
 import models.ModelAgenda;
 import views.ViewAgenda;
 import controllers.ControllerAgenda;
 
+import models.ModelDetalleContacto;
+import views.ViewDetalleContacto;
+import controllers.ControllerDetalleContacto;
+/**
+ *
+ * @author Zeo
+ */
 public class Main {
 
     /**
@@ -17,6 +28,19 @@ public class Main {
         ModelAgenda modelAgenda = new ModelAgenda();
         ViewAgenda viewAgenda = new ViewAgenda();
         ControllerAgenda controllerAgenda = new ControllerAgenda(modelAgenda, viewAgenda);
+        
+        ModelDetalleContacto modelDetalleContacto = new ModelDetalleContacto();
+        ViewDetalleContacto viewDetalleContacto = new ViewDetalleContacto();
+        ControllerDetalleContacto controllerDetalleContacto = new ControllerDetalleContacto(modelDetalleContacto, viewDetalleContacto);
+        
+        Object[] controllers = new Object[2];
+        controllers[0] = controllerAgenda;
+        controllers[1] = controllerDetalleContacto;
+        
+        ModelMain modelMain = new ModelMain();
+        ViewMain viewMain = new ViewMain();
+        ControllerMain controllerMain = new ControllerMain(modelMain, viewMain, controllers);
+        
     }
     
 }
